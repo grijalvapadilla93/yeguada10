@@ -31,7 +31,7 @@ export function Footer() {
           className="uppercase tracking-[0.3em] text-[10px] text-gold"
           style={{ fontFamily: "var(--font-label)" }}
         >
-          © 2024 YEGUADA10. ALL RIGHTS RESERVED.
+          © 2026 YEGUADA10. TODOS LOS DERECHOS RESERVADOS.
         </div>
       </div>
 
