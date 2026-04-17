@@ -36,26 +36,19 @@ export function Footer() {
       </div>
 
       {/* Hecho por Cenit Digital */}
-      <div className="border-t border-outline-variant/15 py-8">
-        <div className="flex flex-col items-center gap-3">
+      <div className="border-t border-outline-variant/15 py-10">
+        <div className="flex flex-col items-center gap-5">
           <span 
-            className="uppercase tracking-[0.3em] text-[10px] text-outline/50"
+            className="uppercase tracking-[0.3em] text-[12px] text-outline/70"
             style={{ fontFamily: "var(--font-label)" }}
           >
             Hecho por
           </span>
-          <a 
-            href="https://cenit.digital" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-300"
-          >
-            <img
-              src="/cenit-logo.png"
-              alt="Cenit Digital"
-              className="h-5 w-auto opacity-60"
-            />
-          </a>
+          <img
+            src="/cenit-logo.png"
+            alt="Cenit Digital"
+            className="h-10 w-auto opacity-80"
+          />
         </div>
       </div>
     </footer>
