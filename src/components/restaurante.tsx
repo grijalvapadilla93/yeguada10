@@ -57,7 +57,7 @@ export function Restaurante() {
             {/* Menu categories grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8 mb-12">
               {categories.map((cat, i) => (
-                <ScrollReveal key={cat.title} stagger={((i + 1) as 1) || 2} threshold={0.05}>
+                <ScrollReveal key={cat.title} stagger={i + 1} threshold={0.05}>
                   <div className="border-t border-outline-variant/30 pt-4">
                     <h3
                       className="text-2xl text-gold mb-2"
@@ -88,7 +88,7 @@ export function Restaurante() {
           </div>
 
           {/* Right — image */}
-          <ScrollReveal className="w-full md:w-1/2 h-[600px] img-hover-zoom" threshold={0.05}>
+          <ScrollReveal className="w-full md:w-1/2 h-[400px] md:h-[600px] img-hover-zoom" threshold={0.05}>
             <div
               className="w-full h-full luxury-filter"
               style={{

@@ -41,7 +41,7 @@ export function Hero() {
       <div className="absolute bottom-0 left-0 right-0 h-[40vh] bg-gradient-to-t from-[#1a150a] via-[#1a150a]/60 to-transparent z-[2]" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-12 pt-20">
+      <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-12 pt-20">
         <p
           className="hero-fade-up uppercase tracking-[0.3em] text-[11px] text-gold mb-6"
           style={{ fontFamily: "var(--font-label)", animationDelay: "0.1s" }}
@@ -49,9 +49,9 @@ export function Hero() {
           — Finca · Restaurante · Caballos PRE
         </p>
 
-        <h1 className="hero-title flex flex-col mb-12">
+        <h1 className="hero-title flex flex-col mb-8 md:mb-12">
           <span
-            className="hero-fade-up text-[120px] md:text-[180px] font-bold text-cream tracking-tighter"
+            className="hero-fade-up text-[48px] sm:text-[72px] md:text-[120px] lg:text-[180px] font-bold text-cream tracking-tighter"
             style={{
               fontFamily: "var(--font-heading)",
               animationDelay: "0.2s",
@@ -60,7 +60,7 @@ export function Hero() {
             YEGUADA
           </span>
           <span
-            className="hero-fade-up text-6xl md:text-8xl italic text-gold -mt-8 md:-mt-12 ml-20 md:ml-32"
+            className="hero-fade-up text-3xl sm:text-5xl md:text-6xl lg:text-8xl italic text-gold -mt-2 md:-mt-8 lg:-mt-12 ml-8 sm:ml-12 md:ml-20 lg:ml-32"
             style={{
               fontFamily: "var(--font-heading)",
               animationDelay: "0.4s",
@@ -71,17 +71,17 @@ export function Hero() {
         </h1>
 
         <div
-          className="hero-fade-up flex flex-col md:flex-row gap-6 items-start"
+          className="hero-fade-up flex flex-col md:flex-row gap-4 md:gap-6 items-start"
           style={{ animationDelay: "0.6s" }}
         >
           <button
-            className="px-10 py-4 bg-gold text-[#1a1200] uppercase tracking-[0.3em] text-xs hover:bg-gold-light transition-luxury btn-press btn-shimmer"
+            className="px-8 md:px-10 py-4 bg-gold text-[#1a1200] uppercase tracking-[0.3em] text-xs hover:bg-gold-light transition-luxury btn-press btn-shimmer"
             style={{ fontFamily: "var(--font-label)" }}
           >
             Reservar Mesa
           </button>
           <button
-            className="px-10 py-4 border border-gold/40 text-gold uppercase tracking-[0.3em] text-xs hover:border-gold transition-luxury btn-press"
+            className="px-8 md:px-10 py-4 border border-gold/40 text-gold uppercase tracking-[0.3em] text-xs hover:border-gold transition-luxury btn-press"
             style={{ fontFamily: "var(--font-label)" }}
           >
             Ver Caballos PRE
@@ -89,9 +89,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Stat boxes */}
+      {/* Stat boxes — hidden on small screens */}
       <div
-        className="hero-fade-in absolute bottom-12 right-12 flex flex-col gap-4 z-10"
+        className="hero-fade-in hidden md:flex absolute bottom-12 right-12 flex-col gap-4 z-10"
         style={{ animationDelay: "0.8s" }}
       >
         <div className="bg-surface-variant/70 backdrop-blur-xl p-6 min-w-[200px]">

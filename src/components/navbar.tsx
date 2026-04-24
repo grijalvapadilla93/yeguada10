@@ -22,7 +22,7 @@ export function Navbar() {
     { label: "SEMENTALES", href: "#stallions" },
     { label: "ACADEMIA", href: "#academy" },
     { label: "MENÚ", href: "/menu" },
-    { label: "FINCA", href: "#estate" },
+    { label: "FINCA", href: "#restaurant" },
     { label: "CONTACTO", href: "#contact" },
   ];
 

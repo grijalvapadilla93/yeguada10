@@ -69,7 +69,7 @@ export function MusicaVivo() {
           {events.map((event, i) => (
             <ScrollReveal
               key={event.day}
-              stagger={((i + 1) as 1) || 2}
+              stagger={i + 1}
               threshold={0.05}
             >
               <div className="group border border-outline-variant/20 p-10 hover:border-gold/40 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(196,144,42,0.08)] transition-all duration-500 ease-out h-full flex flex-col">

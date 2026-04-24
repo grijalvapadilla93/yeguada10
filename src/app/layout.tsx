@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Newsreader, Space_Grotesk } from "next/font/google";
+import { BfcacheReload } from "@/components/bfcache-reload";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -48,6 +49,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <BfcacheReload />
         <div className="grain-overlay" aria-hidden="true" />
         {children}
       </body>

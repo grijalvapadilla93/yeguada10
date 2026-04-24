@@ -1,45 +1,90 @@
 "use client";
-import { useEffect, useRef } from "react";
+
+import { useEffect, useRef, ReactNode } from "react";
 
 interface ScrollRevealProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-  stagger?: 1 | 2 | 3 | 4 | 5;
+  stagger?: number;
   threshold?: number;
 }
 
 export function ScrollReveal({
   children,
   className = "",
-  stagger,
+  stagger = 0,
+  threshold = 0.15,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    if (!document.documentElement.classList.contains("js-enabled")) {
+      document.documentElement.classList.add("js-enabled");
+    }
 
-    el.classList.remove("revealed");
+    const element = ref.current;
+    if (!element) return;
 
-    const onScroll = () => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.85) {
-        el.classList.add("revealed");
-        window.removeEventListener("scroll", onScroll);
+    let observer: IntersectionObserver | null = null;
+    let fallbackTimer: ReturnType<typeof setTimeout>;
+
+    const reveal = (immediate = false) => {
+      if (!element) return;
+      if (immediate) {
+        element.style.transition = "none";
+        element.classList.add("revealed");
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            element.style.transition = "";
+          });
+        });
+      } else {
+        element.classList.add("revealed");
       }
+      if (observer) observer.disconnect();
+      clearTimeout(fallbackTimer);
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    // Check immediately in case element is already in view
-    onScroll();
+    const rect = element.getBoundingClientRect();
+    const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    if (isInViewport) {
+      reveal(true);
+    }
 
-  const staggerClass = stagger ? `stagger-${stagger}` : "";
+    fallbackTimer = setTimeout(() => reveal(false), 2000 + stagger * 100);
+
+    if ("IntersectionObserver" in window) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => reveal(false), stagger * 100);
+            }
+          });
+        },
+        {
+          threshold: 0.05,
+          rootMargin: "0px 0px -40px 0px",
+        }
+      );
+      observer.observe(element);
+    } else {
+      reveal(false);
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
+  }, [stagger, threshold]);
 
   return (
-    <div ref={ref} className={`scroll-reveal ${staggerClass} ${className}`}>
+    <div
+      ref={ref}
+      className={`scroll-reveal ${className}`}
+      style={{ transitionDelay: `${stagger * 0.15}s` }}
+    >
       {children}
     </div>
   );

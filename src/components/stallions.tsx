@@ -11,7 +11,7 @@ export function Stallions() {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Image */}
-          <ScrollReveal className="order-2 md:order-1 h-[800px] img-hover-zoom">
+          <ScrollReveal className="order-2 md:order-1 h-[400px] md:h-[800px] img-hover-zoom">
             <div
               className="w-full h-full luxury-filter"
               style={{

@@ -56,7 +56,7 @@ export function Academia() {
         </div>
 
         {/* Image */}
-        <ScrollReveal className="w-full md:w-7/12 h-[700px] img-hover-zoom">
+        <ScrollReveal className="w-full md:w-7/12 h-[350px] md:h-[700px] img-hover-zoom">
           <div
             className="w-full h-full luxury-filter"
             style={{
