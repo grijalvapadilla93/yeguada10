@@ -10,8 +10,11 @@ export function Stallions() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Image */}
-          <ScrollReveal className="order-2 md:order-1 h-[400px] md:h-[800px] img-hover-zoom">
+          {/* Image — slides in from LEFT (desde la yegua) */}
+          <ScrollReveal
+            className="order-2 md:order-1 h-[400px] md:h-[800px] img-hover-zoom dust-container"
+            direction="left"
+          >
             <div
               className="w-full h-full luxury-filter"
               style={{
@@ -25,9 +28,9 @@ export function Stallions() {
             />
           </ScrollReveal>
 
-          {/* Text */}
+          {/* Text — slides in from RIGHT */}
           <div className="order-1 md:order-2 flex flex-col justify-center">
-            <ScrollReveal>
+            <ScrollReveal direction="right">
               <p
                 className="text-gold uppercase tracking-[0.4em] text-[10px] mb-6 border-l border-gold pl-4"
                 style={{ fontFamily: "var(--font-label)" }}
@@ -43,7 +46,7 @@ export function Stallions() {
               </h2>
             </ScrollReveal>
 
-            <ScrollReveal stagger={1}>
+            <ScrollReveal stagger={1} direction="right">
               <div className="space-y-6 text-sand text-lg mb-12">
                 <p>
                   Nuestros ejemplares Pura Raza Española no son simplemente
@@ -58,7 +61,7 @@ export function Stallions() {
               </div>
             </ScrollReveal>
 
-            <ScrollReveal stagger={2}>
+            <ScrollReveal stagger={2} direction="right">
               <a
                 href="#"
                 className="inline-flex items-center gap-4 text-gold hover:text-cream transition-luxury group cursor-pointer"

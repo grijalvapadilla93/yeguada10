@@ -7,6 +7,7 @@ interface ScrollRevealProps {
   className?: string;
   stagger?: number;
   threshold?: number;
+  direction?: "up" | "left" | "right";
 }
 
 export function ScrollReveal({
@@ -14,6 +15,7 @@ export function ScrollReveal({
   className = "",
   stagger = 0,
   threshold = 0.15,
+  direction = "up",
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -39,20 +41,25 @@ export function ScrollReveal({
           });
         });
       } else {
+        // Force reflow so browser sees initial state before transition
+        void element.offsetHeight;
         element.classList.add("revealed");
       }
       if (observer) observer.disconnect();
       clearTimeout(fallbackTimer);
     };
 
-    const rect = element.getBoundingClientRect();
-    const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    const isDirectional = direction === "left" || direction === "right";
 
-    if (isInViewport) {
-      reveal(true);
+    if (!isDirectional) {
+      const rect = element.getBoundingClientRect();
+      const isFullyInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight;
+      if (isFullyInViewport) {
+        reveal(true);
+      }
     }
 
-    fallbackTimer = setTimeout(() => reveal(false), 2000 + stagger * 100);
+    fallbackTimer = setTimeout(() => reveal(false), isDirectional ? 8000 : 4000);
 
     if ("IntersectionObserver" in window) {
       observer = new IntersectionObserver(
@@ -64,8 +71,8 @@ export function ScrollReveal({
           });
         },
         {
-          threshold: 0.05,
-          rootMargin: "0px 0px -40px 0px",
+          threshold: 0.15,
+          rootMargin: "0px 0px -80px 0px",
         }
       );
       observer.observe(element);
@@ -77,12 +84,19 @@ export function ScrollReveal({
       if (observer) observer.disconnect();
       clearTimeout(fallbackTimer);
     };
-  }, [stagger, threshold]);
+  }, [stagger, threshold, direction]);
+
+  const baseClass =
+    direction === "left"
+      ? "scroll-reveal-from-left"
+      : direction === "right"
+      ? "scroll-reveal-from-right"
+      : "scroll-reveal";
 
   return (
     <div
       ref={ref}
-      className={`scroll-reveal ${className}`}
+      className={`${baseClass} ${className}`}
       style={{ transitionDelay: `${stagger * 0.15}s` }}
     >
       {children}
